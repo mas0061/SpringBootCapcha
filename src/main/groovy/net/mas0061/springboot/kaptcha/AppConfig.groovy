@@ -14,14 +14,14 @@ public class AppConfig {
   @Bean
   @Order(Ordered.HIGHEST_PRECEDENCE)
   CharacterEncodingFilter characterEncodingFilter() {
-    CharacterEncodingFilter filter = new CharacterEncodingFilter()
+    def filter = new CharacterEncodingFilter()
     filter.setEncoding("UTF-8")
-    return filter
+    filter
   }
   
   @Bean
   public ServletRegistrationBean kaptcha() {
-    return new ServletRegistrationBean(new KaptchaServlet(), "/kaptcha.jpg")
+    new ServletRegistrationBean(new KaptchaServlet(), "/kaptcha.jpg")
   }
 
 }

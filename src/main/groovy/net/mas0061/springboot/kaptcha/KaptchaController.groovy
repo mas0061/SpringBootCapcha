@@ -22,12 +22,12 @@ public class KaptchaController {
   
 	@ModelAttribute("kaptchaFormData")
 	KaptchaFormData setUp() {
-		return new KaptchaFormData()
+		new KaptchaFormData()
 	}
 	
   @RequestMapping(value = "/", method = RequestMethod.GET)
   public String kaptcha() {
-    return "index"
+    "index"
   }
   
   @RequestMapping(value = "/", method = RequestMethod.POST)
@@ -41,10 +41,10 @@ public class KaptchaController {
 	  def expectedKaptcha = (String)session.getAttribute(Constants.KAPTCHA_SESSION_KEY)
 	  
 	  if (!solveKaptcha.solve(expectedKaptcha, kaptchaFormData.kaptcha)) {
-      model.addAttribute("exception", new Exception("入力した数字が画像と違います。"))
+      model.addAttribute("exception", new Exception("入力した文字が画像と違います。"))
       return "index"
 	  }
 	  
-    return "success"
+    "success"
   }
 }
