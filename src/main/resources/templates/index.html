@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http:///www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>kaptcha Login</title>
+  <script th:src="@{/jquery-1.11.1.min.js}" />
+</head>
+<body>
+<h1>ログイン</h1>
+<form name="kForm" method="post" th:action="@{/}" th:object="${kaptchaFormData}">
+  <div>
+    <span th:if="${#fields.hasErrors('kaptcha')}" th:errors="*{kaptcha}" style="color: red;">error!</span>
+    <span th:if="${exception != null}" th:text="${exception.message}" style="color: red;">error!</span>
+  </div>
+  <div><img th:src="@{/kaptcha.jpg}" width="200" id="kaptchaImage" /></div>
+  <script th:inline="javascript">
+    var kaptchaUrl = /*[[@{/kaptcha.jpg}]]*/ "/kaptcha.jpg";
+    $(function(){
+      $('#kaptchaImage').on('click', function() {
+        $(this).attr('src', kaptchaUrl + '?' + Math.floor(Math.random()*100) );
+      })
+    });
+  </script>
+  <div>
+    <input type="text" name="kaptcha" value="" th:field="*{kaptcha}" />
+  </div>
+  <div>
+    <button id="loginButton" onCLick="document.kForm.submit();">ログイン</button>
+  </div>
+</form>
+</body>
+</html>

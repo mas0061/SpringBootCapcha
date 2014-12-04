@@ -1,0 +1,37 @@
+buildscript {
+  repositories {
+      mavenCentral()
+	  maven { url "http://repo.spring.io/libs-release" }
+  }
+  dependencies {
+      classpath("org.springframework.boot:spring-boot-gradle-plugin:1.1.5.RELEASE")
+  }
+}
+
+apply plugin: 'groovy'
+apply plugin: 'eclipse'
+apply plugin: 'spring-boot'
+
+sourceCompatibility = 1.7
+version = '1.0.0'
+
+project.ext {
+	baseName = 'springboot_kaptcha'
+	jarName = "${baseName}.jar"
+}
+
+jar {
+  archiveName = project.jarName
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+  compile 'org.springframework.boot:spring-boot-starter-web:1.1.5.RELEASE'
+  compile 'org.springframework.boot:spring-boot-starter-thymeleaf:1.1.5.RELEASE'
+  
+  compile 'org.codehaus.groovy:groovy-all:2.3.6'
+  compile fileTree(dir: 'lib', include: '*.jar')
+}
